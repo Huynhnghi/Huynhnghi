@@ -17,7 +17,7 @@ function Calculator() {
         }
     };
     return (
-        <div>
+        <div className="box">
             <h2>Calculator</h2>
             <input type="text" value={input} onChange={handleEvent} />
             <button onClick={cal}> Tính </button>
