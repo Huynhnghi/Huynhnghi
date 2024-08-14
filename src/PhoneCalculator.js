@@ -1,31 +1,28 @@
-import React, { useState, useMemo } from 'react';
-import { evaluate } from 'mathjs';
-import './style.css';
-import Result from './Result';
-import ErrMessage from './ErrMessage';
+import React, { useState } from "react";
+import { evaluate } from "mathjs";
+import "./style.css";
 
+const Button = React.memo(({ value, onClick }) => {
+    return (
+        <button onClick={() => onClick(value)}>
+            {value}
+        </button>
+    );
+});
 function Calculator() {
     const [input, setInput] = useState("");
     const [result, setResult] = useState(null);
-    const [error, setError] = useState("");
-
-    const computedResult = useMemo(() => {
-        if (input === "") return null;
-        try {
-            return evaluate(input);
-        } catch {
-            return "Lỗi cú pháp";
-        }
-    }, [input]);
 
     const handleClick = (value) => {
         if (value === "C") {
             setInput("");
             setResult(null);
-            setError("");
         } else if (value === "=") {
-            setResult(computedResult);
-            setError(computedResult === "Lỗi cú pháp" ? "Lỗi cú pháp" : "");
+            try {
+                setResult(evaluate(input));
+            } catch {
+                setResult("Lỗi cú pháp");
+            }
         } else if (["+", "-", "*", "/"].includes(value)) {
             setInput((prev) => prev + " " + value + " ");
         } else {
@@ -42,14 +39,13 @@ function Calculator() {
     };
 
     return (
-        <div className="phone-calculator">
+        <div className="calculator">
             <div className="display">
                 <div className="input">{input}</div>
-                <ErrMessage message={error} />
-                <Result result={result} />
+                <div className="result">{result !== null ? `= ${result}` : ""}</div>
             </div>
             <div className="keyboard">
-                {["1", "2", "3", "/", "4", "5", "6", "x", "7", "8", "9", "+", "0", "=", "C", "-"].map((value) => (
+                {["1", "2", "3", "/", "4", "5", "6", "x", "7", "8", "9", "+", "0", "=", "DEL", "-"].map((value) => (
                     <button key={value} onClick={() => handleClick(value)}>
                         {value}
                     </button>
@@ -59,4 +55,4 @@ function Calculator() {
     );
 }
 
-export default Calculator;
+export default PhoneCalculator;

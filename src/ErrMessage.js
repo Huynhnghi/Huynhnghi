@@ -1,12 +1,8 @@
 import React from 'react';
-import './style.css';
 
-function ErrorMessage({ message }) {
-    return (
-        <div className="Err-mess">
-            {message}
-        </div>
-    );
-}
+const ErrMessage = React.memo(({ message }) => {
+    console.log('Render ErrorMessage');
+    return <div className="error-message">{message}</div>;
+});
 
-export default ErrorMessage;
+export default ErrMessage;
