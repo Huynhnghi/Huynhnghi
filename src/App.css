@@ -1,0 +1,57 @@
+/* App.css */
+
+.navbar {
+  background-color: #343a40;
+  color: #181717;
+}
+
+.navbar-brand,
+.nav-link {
+  color: #0e0d0d !important;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+  color: #17a2b8 !important;
+}
+
+.mt-4 {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h2,
+h3 {
+  color: #343a40;
+  border-bottom: 2px solid #17a2b8;
+  padding-bottom: 10px;
+}
+
+p,
+ul {
+  color: #495057;
+}
+
+footer {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+footer a {
+  color: #adb5bd;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+footer .social-icons a {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
