@@ -11,12 +11,13 @@ function Calculator() {
 
     const computedResult = useMemo(() => {
         if (input === "") return null;
-        try {
-            return evaluate(input);
-        } catch {
-            return "Lỗi cú pháp";
+        const result = evaluateWithValidation(input);
+        if (result.error) {
+            return result.errorMessage || "Lỗi cú pháp";
         }
+        return result.value;
     }, [input]);
+    
 
     const handleClick = (value) => {
         if (value === "C") {
